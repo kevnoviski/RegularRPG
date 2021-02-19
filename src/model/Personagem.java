@@ -85,6 +85,7 @@ public class Personagem implements Combate{
 	@Override
 	public int Refletir(int dano) {
 		// TODO Auto-generated method stub
+		//inclusao teste.
 		return 0;
 	}
 	
