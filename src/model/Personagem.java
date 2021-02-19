@@ -5,6 +5,8 @@ public class Personagem implements Combate{
 	private int id;
 	private String name;
 	private int health;
+	private int exp;
+	private int gold;
 	private char sexo;
 	private Armor armadura;
 	private Weapon arma;
@@ -14,6 +16,20 @@ public class Personagem implements Combate{
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+	public int getGold() {
+		return gold;
+	}
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	public int getExp() {
+		return exp;
+	}
+	public void setExp(int exp) {
+		this.exp = exp;
 	}
 	public String getName() {
 		return name;
