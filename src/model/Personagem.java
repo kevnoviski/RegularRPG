@@ -82,5 +82,10 @@ public class Personagem implements Combate{
 		return "Personagem [id=" + id + ", name=" + name + ", health=" + getHealth() + ", sexo=" + sexo + ", armadura="
 				+ armadura.toString() + ", arma=" + arma.toString() + "]";
 	}
+	@Override
+	public int Refletir(int dano) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
