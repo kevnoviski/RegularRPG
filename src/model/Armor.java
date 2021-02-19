@@ -37,7 +37,7 @@ public class Armor {
 	
 	@Override
 	public String toString() {
-		return "\nArmor [classe=" + classe.toString() + ", defesa=" + defesa + ", ataque=" + ataque + "]";
+		return "\nArmor [classe=" + classe.toString() + ", defesa=" + getDefesa() + ", ataque=" + getAtaque() + "]";
 	}
 	
 	

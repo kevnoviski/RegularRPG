@@ -22,7 +22,7 @@ public class Personagem implements Combate{
 		this.name = name;
 	}
 	public int getHealth() {
-		return health;
+		return health + (int)this.armadura.getDefesa();
 	}
 	public void setHealth(int health) {
 		this.health = health;
@@ -79,7 +79,7 @@ public class Personagem implements Combate{
 	}
 	@Override
 	public String toString() {
-		return "Personagem [id=" + id + ", name=" + name + ", health=" + health + ", sexo=" + sexo + ", armadura="
+		return "Personagem [id=" + id + ", name=" + name + ", health=" + getHealth() + ", sexo=" + sexo + ", armadura="
 				+ armadura.toString() + ", arma=" + arma.toString() + "]";
 	}
 	
