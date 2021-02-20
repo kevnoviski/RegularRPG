@@ -21,8 +21,8 @@ public class JumpStartDB {
 				+ "LEFT OUTER join sys.sysschemas ss on "
 				+ "(st.schemaid = ss.schemaid) where ss.schemaname ='CENTRAL'\r\n");
 		if(res.getRowCount() == 0) {
-			crud.Command("create schema central");
-			crud.Command("create table central.");
+			/*crud.Command("create schema central");
+			crud.Command("create table central.");*/
 		}
 		
 		/*select st.tablename  from sys.systables st LEFT OUTER join sys.sysschemas ss on (st.schemaid = ss.schemaid) where ss.schemaname ='APP'
