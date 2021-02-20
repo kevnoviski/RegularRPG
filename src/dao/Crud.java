@@ -20,16 +20,28 @@ public class Crud {
 		return con;
 	}
 	
-	public ResultSet Select(String query, int Nmcolumns) {
+	public DataTable Select(String query) {
 		try {
 			Connection con = Connect();
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData metaData = rs.getMetaData();
 			int totalColumn = metaData.getColumnCount();
-			
-			//con.close();
-			return rs;
+			String[] columns = new String[totalColumn];
+			for(int j=0; j<totalColumn;j++) {
+				columns[j]=metaData.getColumnName(j+1);
+			}
+			DataTable ret = new DataTable(columns);
+			while(rs.next()) {
+				Object[] row = new Object[totalColumn];
+				for(int j=0; j<totalColumn;j++) {
+					row[j]=rs.getString(j+1);
+				}
+				ret.addRow(row);
+			}
+			//https://stackoverflow.com/questions/20142624/how-to-describe-and-show-table-in-derby-db
+			con.close();
+			return ret;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,10 +104,11 @@ public class Crud {
 		return 0;
 	}
 	
-	public void Create(String command) {
+	public void Command(String command) {
 		try {
 			Connection con = Connect();
-			
+			PreparedStatement ps = con.prepareStatement(command);
+			ps.execute();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

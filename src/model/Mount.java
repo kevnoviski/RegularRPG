@@ -6,6 +6,7 @@ public class Mount {
 	private double velocidade;
 	private int health;
 	private int armor;
+	
 	public String getName() {
 		return name;
 	}
