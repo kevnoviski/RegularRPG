@@ -10,7 +10,7 @@ package model;
  * @author Oem
  */
 
-class Item {
+public class Item {
     private int id;
     private int idWeapon;
     private int idArmor;

@@ -12,25 +12,25 @@ import java.util.logging.Logger;
 
 public class JumpStartDB {
 	
-	public void Create() {
-		Crud crud = new Crud();
-          
-		DataTable res = crud.Select("select st.tablename  from sys.systables st "
-				+ "LEFT OUTER join sys.sysschemas ss on "
-				+ "(st.schemaid = ss.schemaid) where ss.schemaname ='REGRPG'\r\n");
-                
-		if(res.getRowCount() == 0) {
-                    try {
-                        System.out.print("The required tables were not found, creating new ones..");
-                        String rootFolder=new File("").getAbsolutePath().toString();
-                        Path fileName = Path.of(rootFolder+"\\startupDB.sql");
-                        String newTables = Files.readString(fileName);
-                        crud.RunBatchCommand(newTables);
-                        System.out.print("done.");
-                    } catch (IOException ex) {
-                        Logger.getLogger(JumpStartDB.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-		}
-	}
+    public void VerifyNCreate() {
+        Crud crud = new Crud();
+
+        DataTable res = crud.Select("select st.tablename  from sys.systables st "
+                        + "LEFT OUTER join sys.sysschemas ss on "
+                        + "(st.schemaid = ss.schemaid) where ss.schemaname ='REGRPG'\r\n");
+
+        if(res.getRowCount() == 0) {
+            try {
+                System.out.print("The required tables were not found, creating new ones..");
+                String rootFolder=new File("").getAbsolutePath().toString();
+                Path fileName = Path.of(rootFolder+"\\startupDB.sql");
+                String newTables = Files.readString(fileName);
+                crud.RunBatchCommand(newTables);
+                System.out.print("done.");
+            } catch (IOException ex) {
+                Logger.getLogger(JumpStartDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 	
 }

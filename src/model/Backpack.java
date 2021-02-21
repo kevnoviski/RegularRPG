@@ -16,7 +16,27 @@ public class Backpack {
     private double weightlimit;
     private double currentWeight;
     private List<Item> itens;
+    private Picture picture;
+    private Tier tier;
 
+    public Tier getTier() {
+        return tier;
+    }
+
+    public void setTier(Tier tier) {
+        this.tier = tier;
+    }
+    
+    
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
+    
     public int getId() {
         return id;
     }
@@ -49,18 +69,21 @@ public class Backpack {
         this.weightlimit = weightlimit;
     }
 
-    public Backpack(int id, double weightlimit, double currentWeight, List<Item> itens) {
+    public Backpack(int id, double weightlimit, double currentWeight, List<Item> itens, Picture picture, Tier tier) {
         this.id = id;
         this.weightlimit = weightlimit;
         this.currentWeight = currentWeight;
         this.itens = itens;
+        this.picture = picture;
+        this.tier = tier;
     }
-
-
 
     @Override
     public String toString() {
-        return "Backpack{" + "id=" + id + ", weightlimit=" + weightlimit + '}';
+        return "Backpack{" + "id=" + id + ", weightlimit=" + weightlimit + ", currentWeight=" + currentWeight + ", itens=" + itens + ", picture=" + picture + ", tier=" + tier + '}';
     }
-    
+
+  
+
+
 }

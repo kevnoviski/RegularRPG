@@ -7,7 +7,26 @@ public class Mount {
     private double velocidade;
     private int health;
     private int armor;
+    private Picture picture;
+    private Tier tier;
 
+    public Tier getTier() {
+        return tier;
+    }
+
+    public void setTier(Tier tier) {
+        this.tier = tier;
+    }
+    
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
+    
     public int getId() {
         return id;
     }
@@ -51,18 +70,20 @@ public class Mount {
 
     }
 
-    public Mount(String name, ClasseMount tipo, double velocidade, int health, int armor) {
-
-            this.name = name;
-            this.tipo = tipo;
-            this.velocidade = velocidade;
-            this.health = health;
-            this.armor = armor;
+    public Mount(int id, String name, ClasseMount tipo, double velocidade, int health, int armor, Picture picture, Tier tier) {
+        this.id = id;
+        this.name = name;
+        this.tipo = tipo;
+        this.velocidade = velocidade;
+        this.health = health;
+        this.armor = armor;
+        this.picture = picture;
+        this.tier = tier;
     }
+
     @Override
     public String toString() {
-            return "Mount [name=" + getName() + ", tipo=" + tipo.toString() + ", velocidade=" + getVelocidade() + ", health=" + getHealth()
-                            + ", armor=" + getArmor() + "]";
+        return "Mount{" + "id=" + id + ", name=" + name + ", tipo=" + tipo + ", velocidade=" + velocidade + ", health=" + health + ", armor=" + armor + ", picture=" + picture + ", tier=" + tier + '}';
     }
-	
+
 }

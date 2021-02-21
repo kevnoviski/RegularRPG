@@ -5,6 +5,26 @@ public class Armor {
     private ClasseCombate classe;
     private double defesa;
     private double ataque;
+    private Picture picture;
+    private Tier tier;
+
+    public Tier getTier() {
+        return tier;
+    }
+
+    public void setTier(Tier tier) {
+        this.tier = tier;
+    }
+    
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
+    
 
     public int getId() {
         return id;
@@ -33,12 +53,16 @@ public class Armor {
             this.ataque = ataque;
     }
 
-    public Armor(ClasseCombate classe, double defesa, double ataque) {
-            super();
-            this.classe = classe;
-            this.defesa = defesa + classe.getDefesa();
-            this.ataque = ataque + classe.getAtaque();
+    public Armor(int id, ClasseCombate classe, double defesa, double ataque, Picture picture, Tier tier) {
+        this.id = id;
+        this.classe = classe;
+        this.defesa = defesa;
+        this.ataque = ataque;
+        this.picture = picture;
+        this.tier = tier;
     }
+
+  
 
     public Armor() {
             super();
@@ -46,8 +70,12 @@ public class Armor {
 
     @Override
     public String toString() {
-            return "\nArmor [classe=" + classe.toString() + ", defesa=" + getDefesa() + ", ataque=" + getAtaque() + "]";
+        return "Armor{" + "id=" + id + ", classe=" + classe.toString() + ", defesa=" + defesa + ", ataque=" + ataque + ", picture=" + picture.toString() + ", tier=" + tier.toString() + '}';
     }
+
+
+
+   
 	
 	
 }

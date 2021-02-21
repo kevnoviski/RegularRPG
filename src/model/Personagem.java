@@ -11,7 +11,15 @@ public class Personagem {
     private Armor armadura;
     private Weapon arma;
     private Backpack backpack ;
+    private Picture picture;
 
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
     public Backpack getBackpack() {
         return backpack;
     }
@@ -78,15 +86,20 @@ public class Personagem {
 
     }
 
-    public Personagem(int id, String name, int health, char sexo, Armor armadura, Weapon arma) {
-
-            this.id = id;
-            this.name = name;
-            this.health = health;
-            this.sexo = sexo;
-            this.armadura = armadura;
-            this.arma = arma;
+    public Personagem(int id, String name, int health, int exp, int gold, char sexo, Armor armadura, Weapon arma, Backpack backpack, Picture picture) {
+        this.id = id;
+        this.name = name;
+        this.health = health;
+        this.exp = exp;
+        this.gold = gold;
+        this.sexo = sexo;
+        this.armadura = armadura;
+        this.arma = arma;
+        this.backpack = backpack;
+        this.picture = picture;
     }
+
+    
 
     
     public int CausarDano(int dano, int health) {
@@ -106,7 +119,7 @@ public class Personagem {
     
     public String toString() {
             return "Personagem [id=" + id + ", name=" + name + ", health=" + getHealth() + ", sexo=" + sexo + ", armadura="
-                            + armadura.toString() + ", arma=" + arma.toString() + "]";
+                            + armadura.toString() + ", arma=" + arma.toString() +", picture = " +picture.toString()+ "]";
     }
     
     public int Refletir(int dano) {
