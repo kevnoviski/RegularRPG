@@ -1,89 +1,181 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model;
 
-public class Mount {
-    private int id;
-    private String name;
-    private ClasseMount tipo;
-    private double velocidade;
-    private int health;
-    private int armor;
-    private Picture picture;
-    private Tier tier;
+import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-    public Tier getTier() {
-        return tier;
+/**
+ *
+ * @author Oem
+ */
+@Entity
+@Table(name = "MOUNT")
+@NamedQueries({
+    @NamedQuery(name = "Mount.findAll", query = "SELECT m FROM Mount m"),
+    @NamedQuery(name = "Mount.findById", query = "SELECT m FROM Mount m WHERE m.id = :id"),
+    @NamedQuery(name = "Mount.findByNome", query = "SELECT m FROM Mount m WHERE m.nome = :nome"),
+    @NamedQuery(name = "Mount.findByVelocidade", query = "SELECT m FROM Mount m WHERE m.velocidade = :velocidade"),
+    @NamedQuery(name = "Mount.findByHealth", query = "SELECT m FROM Mount m WHERE m.health = :health"),
+    @NamedQuery(name = "Mount.findByArmor", query = "SELECT m FROM Mount m WHERE m.armor = :armor"),
+    @NamedQuery(name = "Mount.findByPrice", query = "SELECT m FROM Mount m WHERE m.price = :price")})
+public class Mount implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Integer id;
+    @Column(name = "NOME")
+    private String nome;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "VELOCIDADE")
+    private Double velocidade;
+    @Column(name = "HEALTH")
+    private Integer health;
+    @Column(name = "ARMOR")
+    private Integer armor;
+    @Column(name = "PRICE")
+    private Double price;
+    @OneToMany(mappedBy = "idmount", fetch = FetchType.LAZY)
+    private Collection<Item> itemCollection;
+    @JoinColumn(name = "ID_CLASSEMOUNT", referencedColumnName = "ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ClasseMount idClassemount;
+    @JoinColumn(name = "IDPICTURE", referencedColumnName = "ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Picture idpicture;
+    @JoinColumn(name = "IDTIER", referencedColumnName = "ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Tier idtier;
+
+    public Mount() {
     }
 
-    public void setTier(Tier tier) {
-        this.tier = tier;
-    }
-    
-
-    public Picture getPicture() {
-        return picture;
+    public Mount(Integer id) {
+        this.id = id;
     }
 
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-    }
-    
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-            return name;
-    }
-    public void setName(String name) {
-            this.name = name;
-    }
-    public ClasseMount getTipo() {
-            return tipo;
-    }
-    public void setTipo(ClasseMount tipo) {
-            this.tipo = tipo;
-    }
-    public double getVelocidade() {
-            return velocidade;
-    }
-    public void setVelocidade(double velocidade) {
-            this.velocidade = velocidade;
-    }
-    public int getHealth() {
-            return health;
-    }
-    public void setHealth(int health) {
-            this.health = health;
-    }
-    public int getArmor() {
-            return armor;
-    }
-    public void setArmor(int armor) {
-            this.armor = armor;
+    public String getNome() {
+        return nome;
     }
 
-    public Mount() {
-
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Mount(int id, String name, ClasseMount tipo, double velocidade, int health, int armor, Picture picture, Tier tier) {
-        this.id = id;
-        this.name = name;
-        this.tipo = tipo;
+    public Double getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(Double velocidade) {
         this.velocidade = velocidade;
+    }
+
+    public Integer getHealth() {
+        return health;
+    }
+
+    public void setHealth(Integer health) {
         this.health = health;
+    }
+
+    public Integer getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Integer armor) {
         this.armor = armor;
-        this.picture = picture;
-        this.tier = tier;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Collection<Item> getItemCollection() {
+        return itemCollection;
+    }
+
+    public void setItemCollection(Collection<Item> itemCollection) {
+        this.itemCollection = itemCollection;
+    }
+
+    public ClasseMount getIdClassemount() {
+        return idClassemount;
+    }
+
+    public void setIdClassemount(ClasseMount idClassemount) {
+        this.idClassemount = idClassemount;
+    }
+
+    public Picture getIdpicture() {
+        return idpicture;
+    }
+
+    public void setIdpicture(Picture idpicture) {
+        this.idpicture = idpicture;
+    }
+
+    public Tier getIdtier() {
+        return idtier;
+    }
+
+    public void setIdtier(Tier idtier) {
+        this.idtier = idtier;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Mount)) {
+            return false;
+        }
+        Mount other = (Mount) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Mount{" + "id=" + id + ", name=" + name + ", tipo=" + tipo + ", velocidade=" + velocidade + ", health=" + health + ", armor=" + armor + ", picture=" + picture + ", tier=" + tier + '}';
+        return "model.Mount[ id=" + id + " ]";
     }
-
+    
 }

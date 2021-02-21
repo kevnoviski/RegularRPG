@@ -1,26 +1,25 @@
 
-create schema REGRPG;
 
-CREATE TABLE REGRPG.ClasseCombate(
+CREATE TABLE APP.ClasseCombate(
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     NOME VARCHAR(80),
     ALCANCE INT,
     ATAQUE INT,
     DEFESA INT);
 
-create table REGRPG.PICTURE(
+create table APP.PICTURE(
 	ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
 	NAME  VARCHAR(50),
 	PATH VARCHAR(500)
 );
 
-CREATE TABLE REGRPG.TIER (
+CREATE TABLE APP.TIER (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     tierNumber INT,
     requiredExp INT
 );
 
-CREATE TABLE REGRPG.WEAPON(
+CREATE TABLE APP.WEAPON(
 	ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
 	NOME VARCHAR(80),
         ID_ClasseCombate INT NOT NULL,
@@ -30,31 +29,33 @@ CREATE TABLE REGRPG.WEAPON(
 	alcance INT,
 	quebrada BOOLEAN,
 	idPicture INT,
-	idTier INT);
-Alter Table REGRPG.WEAPON Add FOREIGN KEY (ID_ClasseCombate) References REGRPG.ClasseCombate (ID);   
-Alter Table REGRPG.WEAPON Add FOREIGN KEY (idPicture) References REGRPG.PICTURE (ID);   
-Alter Table REGRPG.WEAPON Add FOREIGN KEY (idTier) References REGRPG.TIER (ID);   
+	idTier INT,
+	PRICE DOUBLE);
+Alter Table APP.WEAPON Add FOREIGN KEY (ID_ClasseCombate) References APP.ClasseCombate (ID);   
+Alter Table APP.WEAPON Add FOREIGN KEY (idPicture) References APP.PICTURE (ID);   
+Alter Table APP.WEAPON Add FOREIGN KEY (idTier) References APP.TIER (ID);   
 
 
-CREATE TABLE REGRPG.ARMOR(
+CREATE TABLE APP.ARMOR(
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     ID_ClasseCombate INT NOT NULL,
     defesa DOUBLE,
     ataque DOUBLE,
 	idPicture INT,
-	idTier INT);
-Alter Table REGRPG.ARMOR Add FOREIGN KEY (ID_ClasseCombate) References REGRPG.ClasseCombate (ID);  
-Alter Table REGRPG.ARMOR Add FOREIGN KEY (idPicture) References REGRPG.PICTURE (ID); 
-Alter Table REGRPG.ARMOR Add FOREIGN KEY (idTier) References REGRPG.TIER (ID); 
+	idTier INT,
+	PRICE DOUBLE);
+Alter Table APP.ARMOR Add FOREIGN KEY (ID_ClasseCombate) References APP.ClasseCombate (ID);  
+Alter Table APP.ARMOR Add FOREIGN KEY (idPicture) References APP.PICTURE (ID); 
+Alter Table APP.ARMOR Add FOREIGN KEY (idTier) References APP.TIER (ID); 
 
 
-CREATE TABLE REGRPG.ClasseMount (
+CREATE TABLE APP.ClasseMount (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     classe VARCHAR(50)
 );
 
 
-CREATE TABLE REGRPG.Mount (
+CREATE TABLE APP.Mount (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     NOME VARCHAR(80),
     ID_ClasseMount INT,
@@ -62,45 +63,51 @@ CREATE TABLE REGRPG.Mount (
     health INT,
     armor INT,
 	idPicture INT,
-	idTier INT);
-Alter Table REGRPG.Mount Add FOREIGN KEY (ID_ClasseMount) References REGRPG.ClasseMount (ID); 
-Alter Table REGRPG.Mount Add FOREIGN KEY (idPicture) References REGRPG.PICTURE (ID);  
-Alter Table REGRPG.Mount Add FOREIGN KEY (idTier) References REGRPG.TIER (ID);
+	idTier INT,
+	PRICE DOUBLE);
+Alter Table APP.Mount Add FOREIGN KEY (ID_ClasseMount) References APP.ClasseMount (ID); 
+Alter Table APP.Mount Add FOREIGN KEY (idPicture) References APP.PICTURE (ID);  
+Alter Table APP.Mount Add FOREIGN KEY (idTier) References APP.TIER (ID);
 
 
-CREATE TABLE REGRPG.Backpack (
+CREATE TABLE APP.Backpack (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     weightlimit DOUBLE,
     currentWeight DOUBLE,
 	idPicture INT,
-	idTier INT
+	idTier INT,
+	PRICE DOUBLE
 );
-Alter Table REGRPG.Backpack Add FOREIGN KEY (idPicture) References REGRPG.PICTURE (ID); 
-Alter Table REGRPG.Backpack Add FOREIGN KEY (idTier) References REGRPG.TIER (ID);
+Alter Table APP.Backpack Add FOREIGN KEY (idPicture) References APP.PICTURE (ID); 
+Alter Table APP.Backpack Add FOREIGN KEY (idTier) References APP.TIER (ID);
 
-CREATE TABLE REGRPG.Item (
+CREATE TABLE APP.Item (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     idWeapon INT ,
-    idArmor INT 
+    idArmor INT ,
+	idMount INT,
+	idBackpack INT
 );
 
-Alter Table REGRPG.Item Add FOREIGN KEY (idWeapon) References REGRPG.WEAPON (ID);  
+Alter Table APP.Item Add FOREIGN KEY (idWeapon) References APP.WEAPON (ID);  
 
-Alter Table REGRPG.Item Add FOREIGN KEY (idArmor) References REGRPG.ARMOR (ID);  
+Alter Table APP.Item Add FOREIGN KEY (idArmor) References APP.ARMOR (ID);  
+Alter Table APP.Item Add FOREIGN KEY (idMount) References APP.MOUNT (ID);  
+Alter Table APP.Item Add FOREIGN KEY (idBackpack) References APP.Backpack (ID);  
 
 
-CREATE TABLE REGRPG.BackpackItem (
+CREATE TABLE APP.BackpackItem (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     idBackpack INT,
     idItem INT
 );
 
-Alter Table REGRPG.BackpackItem Add FOREIGN KEY (idBackpack) References REGRPG.Backpack (ID);  
+Alter Table APP.BackpackItem Add FOREIGN KEY (idBackpack) References APP.Backpack (ID);  
 
-Alter Table REGRPG.BackpackItem Add FOREIGN KEY (idItem) References REGRPG.Item (ID);  
+Alter Table APP.BackpackItem Add FOREIGN KEY (idItem) References APP.Item (ID);  
 
 
-CREATE TABLE REGRPG.Personagem (
+CREATE TABLE APP.Personagem (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     name VARCHAR(50),
     health INT,
@@ -112,22 +119,22 @@ CREATE TABLE REGRPG.Personagem (
     idBackpack INT,
 	idPicture INT
 );
-Alter Table REGRPG.Personagem Add FOREIGN KEY (idArmor) References REGRPG.ARMOR (ID);  
+Alter Table APP.Personagem Add FOREIGN KEY (idArmor) References APP.ARMOR (ID);  
 
-Alter Table REGRPG.Personagem Add FOREIGN KEY (idWeapon) References REGRPG.WEAPON (ID);  
+Alter Table APP.Personagem Add FOREIGN KEY (idWeapon) References APP.WEAPON (ID);  
 
-Alter Table REGRPG.Personagem Add FOREIGN KEY (idBackpack) References REGRPG.Backpack (ID);  
+Alter Table APP.Personagem Add FOREIGN KEY (idBackpack) References APP.Backpack (ID);  
 
-Alter Table REGRPG.Personagem Add FOREIGN KEY (idPicture) References REGRPG.PICTURE (ID); 
+Alter Table APP.Personagem Add FOREIGN KEY (idPicture) References APP.PICTURE (ID); 
 
-CREATE TABLE REGRPG.Jogador (    ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),    nome VARCHAR(100));
+CREATE TABLE APP.Jogador (    ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),    nome VARCHAR(100));
 
 
-create table REGRPG.JogadorPersonagem (
+create table APP.JogadorPersonagem (
     ID INT PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1,INCREMENT BY 1),
     idJogador INT,
     idPersonagem INT
 );
 
-Alter Table REGRPG.JogadorPersonagem Add FOREIGN KEY (idJogador) References REGRPG.Jogador (ID);  
-Alter Table REGRPG.JogadorPersonagem Add FOREIGN KEY (idPersonagem) References REGRPG.Personagem (ID);  
+Alter Table APP.JogadorPersonagem Add FOREIGN KEY (idJogador) References APP.Jogador (ID);  
+Alter Table APP.JogadorPersonagem Add FOREIGN KEY (idPersonagem) References APP.Personagem (ID);  

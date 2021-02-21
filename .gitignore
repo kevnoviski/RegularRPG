@@ -2,3 +2,5 @@
 /build/
 /DB/
 /dist/
+/bkp/
+derby.log

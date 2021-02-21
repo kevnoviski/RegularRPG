@@ -17,7 +17,7 @@ public class JumpStartDB {
 
         DataTable res = crud.Select("select st.tablename  from sys.systables st "
                         + "LEFT OUTER join sys.sysschemas ss on "
-                        + "(st.schemaid = ss.schemaid) where ss.schemaname ='REGRPG'\r\n");
+                        + "(st.schemaid = ss.schemaid) where ss.schemaname ='APP'\r\n");
 
         if(res.getRowCount() == 0) {
             try {
