@@ -1,13 +1,14 @@
+Sat Feb 20 21:06:07 GMT-03:00 2021 : Apache Derby Servidor de Rede - 10.14.2.0 - (1828579) iniciado e pronto para aceitar conexıes na porta 1527 em {3}
 ----------------------------------------------------------------
-Sat Feb 20 18:15:29 GMT-03:00 2021:
- Inicializando o Derby vers√£o The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): inst√¢ncia a816c00e-0177-c14c-282c-00000f800000
-no diret√≥rio de banco de dados C:\Users\Oem\Desktop\Eclipse WorkSpace\RegularRPG\DB 
+Sat Feb 20 21:06:07 GMT-03:00 2021:
+ Inicializando o Derby vers„o The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): inst‚ncia a816c00e-0177-c1e8-5e7f-ffffea64080b
+no diretÛrio de banco de dados C:\Users\Oem\Desktop\Eclipse WorkSpace\RegularRPG\DB 
 
 java.vendor=Oracle Corporation
 java.runtime.version=12.0.2+10
-user.dir=C:\Users\Oem\Desktop\Eclipse WorkSpace\RegularRPG
+user.dir=C:\Users\Oem\Desktop\Eclipse WorkSpace\RegularRPG\db-derby-10.14.2.0-bin
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1
-derby.system.home=null
+derby.system.home=C:\Users\Oem\Desktop\Eclipse WorkSpace\RegularRPG
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
