@@ -73,7 +73,9 @@ public class Weapon implements Serializable {
     @JoinColumn(name = "IDTIER", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Tier idtier;
-
+    @Column(name = "WEIGHT")
+    private Double weight;
+    
     public Weapon() {
     }
 
@@ -83,6 +85,28 @@ public class Weapon implements Serializable {
 
     public Integer getId() {
         return id;
+    }
+
+    public Weapon(String nome, Double dano, Double dps, Double durabilidade, Integer alcance, Boolean quebrada, Double price, ClasseCombate idClassecombate, Picture idpicture, Tier idtier, Double weight) {
+        this.nome = nome;
+        this.dano = dano;
+        this.dps = dps;
+        this.durabilidade = durabilidade;
+        this.alcance = alcance;
+        this.quebrada = quebrada;
+        this.price = price;
+        this.idClassecombate = idClassecombate;
+        this.idpicture = idpicture;
+        this.idtier = idtier;
+        this.weight = weight;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public void setId(Integer id) {

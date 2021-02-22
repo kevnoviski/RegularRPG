@@ -60,12 +60,31 @@ public class Backpack implements Serializable {
     private Tier idtier;
     @OneToMany(mappedBy = "idbackpack", fetch = FetchType.LAZY)
     private Collection<BackpackItem> backpackitemCollection;
-
+    @Column(name = "WEIGHT")
+    private Double weight;
+    
     public Backpack() {
     }
 
     public Backpack(Integer id) {
         this.id = id;
+    }
+
+    public Backpack(Double weightlimit, Double currentweight, Double price, Picture idpicture, Tier idtier, Double weight) {
+        this.weightlimit = weightlimit;
+        this.currentweight = currentweight;
+        this.price = price;
+        this.idpicture = idpicture;
+        this.idtier = idtier;
+        this.weight = weight;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public Integer getId() {

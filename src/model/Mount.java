@@ -65,12 +65,34 @@ public class Mount implements Serializable {
     @JoinColumn(name = "IDTIER", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Tier idtier;
+    @Column(name = "WEIGHT")
+    private Double weight;
 
     public Mount() {
     }
 
     public Mount(Integer id) {
         this.id = id;
+    }
+
+    public Mount(String nome, Double velocidade, Integer health, Integer armor, Double price, ClasseMount idClassemount, Picture idpicture, Tier idtier, Double weight) {
+        this.nome = nome;
+        this.velocidade = velocidade;
+        this.health = health;
+        this.armor = armor;
+        this.price = price;
+        this.idClassemount = idClassemount;
+        this.idpicture = idpicture;
+        this.idtier = idtier;
+        this.weight = weight;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public Integer getId() {

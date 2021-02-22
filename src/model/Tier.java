@@ -58,6 +58,11 @@ public class Tier implements Serializable {
         this.id = id;
     }
 
+    public Tier(Integer tiernumber, Integer requiredexp) {
+        this.tiernumber = tiernumber;
+        this.requiredexp = requiredexp;
+    }
+
     public Integer getId() {
         return id;
     }

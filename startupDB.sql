@@ -30,7 +30,8 @@ CREATE TABLE APP.WEAPON(
 	quebrada BOOLEAN,
 	idPicture INT,
 	idTier INT,
-	PRICE DOUBLE);
+	PRICE DOUBLE,
+	WEIGHT DOUBLE);
 Alter Table APP.WEAPON Add FOREIGN KEY (ID_ClasseCombate) References APP.ClasseCombate (ID);   
 Alter Table APP.WEAPON Add FOREIGN KEY (idPicture) References APP.PICTURE (ID);   
 Alter Table APP.WEAPON Add FOREIGN KEY (idTier) References APP.TIER (ID);   
@@ -43,7 +44,8 @@ CREATE TABLE APP.ARMOR(
     ataque DOUBLE,
 	idPicture INT,
 	idTier INT,
-	PRICE DOUBLE);
+	PRICE DOUBLE,
+	WEIGHT DOUBLE);
 Alter Table APP.ARMOR Add FOREIGN KEY (ID_ClasseCombate) References APP.ClasseCombate (ID);  
 Alter Table APP.ARMOR Add FOREIGN KEY (idPicture) References APP.PICTURE (ID); 
 Alter Table APP.ARMOR Add FOREIGN KEY (idTier) References APP.TIER (ID); 
@@ -64,7 +66,8 @@ CREATE TABLE APP.Mount (
     armor INT,
 	idPicture INT,
 	idTier INT,
-	PRICE DOUBLE);
+	PRICE DOUBLE,
+	WEIGHT DOUBLE);
 Alter Table APP.Mount Add FOREIGN KEY (ID_ClasseMount) References APP.ClasseMount (ID); 
 Alter Table APP.Mount Add FOREIGN KEY (idPicture) References APP.PICTURE (ID);  
 Alter Table APP.Mount Add FOREIGN KEY (idTier) References APP.TIER (ID);
@@ -76,7 +79,8 @@ CREATE TABLE APP.Backpack (
     currentWeight DOUBLE,
 	idPicture INT,
 	idTier INT,
-	PRICE DOUBLE
+	PRICE DOUBLE,
+	WEIGHT DOUBLE
 );
 Alter Table APP.Backpack Add FOREIGN KEY (idPicture) References APP.PICTURE (ID); 
 Alter Table APP.Backpack Add FOREIGN KEY (idTier) References APP.TIER (ID);
@@ -138,3 +142,5 @@ create table APP.JogadorPersonagem (
 
 Alter Table APP.JogadorPersonagem Add FOREIGN KEY (idJogador) References APP.Jogador (ID);  
 Alter Table APP.JogadorPersonagem Add FOREIGN KEY (idPersonagem) References APP.Personagem (ID);  
+
+

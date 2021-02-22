@@ -61,6 +61,13 @@ public class ClasseCombate implements Serializable {
         this.id = id;
     }
 
+    public ClasseCombate(String nome, Integer alcance, Integer ataque, Integer defesa) {
+        this.nome = nome;
+        this.alcance = alcance;
+        this.ataque = ataque;
+        this.defesa = defesa;
+    }
+
     public Integer getId() {
         return id;
     }

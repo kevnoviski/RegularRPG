@@ -60,6 +60,11 @@ public class Picture implements Serializable {
         this.id = id;
     }
 
+    public Picture(String name, String path) {
+        this.name = name;
+        this.path = path;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -61,12 +61,32 @@ public class Armor implements Serializable {
     private Tier idtier;
     @OneToMany(mappedBy = "idarmor", fetch = FetchType.LAZY)
     private Collection<Item> itemCollection;
-
+    @Column(name = "WEIGHT")
+    private Double weight;
+    
     public Armor() {
     }
 
     public Armor(Integer id) {
         this.id = id;
+    }
+
+    public Armor(Double defesa, Double ataque, Double price, ClasseCombate idClassecombate, Picture idpicture, Tier idtier, Double weight) {
+        this.defesa = defesa;
+        this.ataque = ataque;
+        this.price = price;
+        this.idClassecombate = idClassecombate;
+        this.idpicture = idpicture;
+        this.idtier = idtier;
+        this.weight = weight;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public Integer getId() {

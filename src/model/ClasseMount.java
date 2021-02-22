@@ -49,6 +49,10 @@ public class ClasseMount implements Serializable {
         this.id = id;
     }
 
+    public ClasseMount(String classe) {
+        this.classe = classe;
+    }
+
     public Integer getId() {
         return id;
     }
